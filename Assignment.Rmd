@@ -27,9 +27,9 @@ While performing the exercise, accelerrations of different parts of the body and
   <img src="./figures/on-body-sensing-schema.png">
 </p>
 
-We will use the acceleration data to predict the execution quality for 20 samples of the data using a simple classification tree and a random forest. The accuracy of the random forest is found to be very high () while that of the simple classification tree is moderately high (). 
+We will use the acceleration data to predict the execution quality for 20 samples of the data using a simple classification tree and a random forest. The accuracy of the random forest is found to be very high (0.995) while that of the simple classification tree is moderately high (0.944). 
 
-Using the random forest, it is found that we are able to predict all 20 samples correctly. This is not surprising as, given the accuracy of the random forest, the probability to find all 20 samples to be correct is (). 
+Using the random forest, it is found that we are able to predict all 20 samples correctly. This is not surprising as, given the accuracy of the random forest model, the probability to find all 20 samples to be correct is (0.907). 
 
 
 ## Data preprocessing
@@ -136,7 +136,7 @@ Accuracy.Simple.DecisionTree <- cM.Simple.DecisionTree$overall[1]
 print(cM.Simple.DecisionTree)
 ```
 
-This model is performing even *better* on the testing dataset than on the training dataset. On the testing dataset, the model achieves an accuracy of `r Accuracy.Simple.DecisionTree`, slightly larger than the accuracy estimate for the best `cp` value using hyperparameter (`r model.Simple.DecisionTree$results[1,"Accuracy"]`).
+This model is performing even *better* on the testing dataset than on the training dataset. On the testing dataset, the model achieves an accuracy of `r Accuracy.Simple.DecisionTree`, slightly larger than the accuracy estimate for the best `cp` value using hyperparameter tuning (`r model.Simple.DecisionTree$results[1,"Accuracy"]`).
 
 ### Random Forest
 The accuracy results for the simple decision tree are quite encouraging. However, given this accuracy, the probability get all `r n.testing` samples right is only `r dbinom(n.testing, size=n.testing, prob=Accuracy.Simple.DecisionTree)`. 
@@ -194,7 +194,7 @@ df.all.results
 ```
 
 
-Astonishingly, both models provide the same results. We were not expecting this as we estimate the chance of getting at least one prediction wrong for the simple tree model to be `r 1-dbinom(n.testing, size=n.testing, prob=Accuracy.Simple.DecisionTree)`
+Astonishingly, both models provide the same results. We were not expecting this as we estimate the chance of getting at least one prediction wrong for the simple tree model to be `r 1-dbinom(n.testing, size=n.testing, prob=Accuracy.Simple.DecisionTree)`.
 
 ## Conclusion
 We have successfully predicted the manner in which a weight-lifting exercise was executed given movement and environmental data measured at 4 locations on the body and the dumbbell.
