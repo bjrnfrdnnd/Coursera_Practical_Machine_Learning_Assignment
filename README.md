@@ -1,0 +1,2 @@
+# Coursera_Practical_Machine_Learning_Assignment
+Assignment for the coursera class Practical Machine Learning
